@@ -26,7 +26,7 @@ config("pdfium_common_config") {
   cflags_cc = []
   ldflags = []
   include_dirs = [ "." ]
-  defines = []
+  defines = ["FPDFSDK_EXPORTS"]
 
   if (!use_system_libopenjpeg2) {
     defines += [ "OPJ_STATIC" ]
@@ -341,7 +341,7 @@ group("pdfium_public_headers") {
   ]
 }
 
-component("pdfium") {
+shared_library("pdfium") {
   output_name = "pdfium"
   libs = []
   configs += [ ":pdfium_strict_config" ]
